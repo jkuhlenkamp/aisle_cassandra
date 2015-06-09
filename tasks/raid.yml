@@ -18,9 +18,12 @@
   ignore_errors: yes
   register: dev_exists
 
+
+# ebs_volume_list|length
+# --raid-devices=2 /dev/xvdb /dev/xvdc"
 - name: "Create device: /dev/md0"
   sudo: yes
-  command: "mdadm --create {{ sutdevice }} --auto md --level={{ raid_level }} --chunk={{ raid_chunksize }} --raid-devices=2 /dev/xvdb /dev/xvdc"
+  command: "mdadm --create {{ sutdevice }} --auto md --level={{ raid_level }} --chunk={{ raid_chunksize }} --raid-devices={{ ebs_volume_list|length }} {{ ebs_volume_list|join(' ') }}"
   when: dev_exists.rc != 0
 
 - include: mounted_dev.yml

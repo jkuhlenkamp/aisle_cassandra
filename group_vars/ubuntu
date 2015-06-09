@@ -6,12 +6,27 @@ hosts_file: /etc/hosts
 home_dir: "/home/{{ user }}"
 tmp_dir: "{{ home_dir }}/tmp"
 
-# Directories to collect measurements and results of any benchmark
-result_dir: "{{ home_dir }}/results"
-workspace_dir: "{{ home_dir }}/workspace"
-workload_dir: "{{ home_dir }}/workloads"
-wl_name: "wl.job"
-
-
 # Target folder on remote nodes to install software
-# java_install_dir : "/opt/java/64/oracle-java{{ java_version_minor }}"
+java_install_dir : "/opt/java/64/oracle-java{{ java_version_minor }}"
+cassandra_install_dir : "{{ home_dir }}/cassandra"
+kairos_install_dir : "{{ home_dir }}/kairosdb"
+newts_install_dir : "{{ home_dir }}/newts"
+ycsb_install_dir : "{{ home_dir }}/ycsb"
+
+monitoring_dir : "{{ home_dir }}/monitoring"
+
+###########################################################
+# RAID
+
+# [2Do: Expose blocksize used by the filesystem in bytes]
+# Blocksize of file system in bytes. Domain: [ x <= page size => x <= 4096 KiB ]
+fs_blocksize: "4096"
+
+# [2Do: Expose Chunk-Size used by RAIDs]
+# Chunk-Size of file system in Kibibytes. Domain: [4 KiB <= x <= 128 KiB]
+raid_chunksize: "128"
+
+# Specify the type of software RAID to use. Example: "0" for RAID0
+raid_level: "0"
+
+raid_device_path: "/dev/md0"
