@@ -60,6 +60,8 @@
   vars:
     aws_region: "eu-west-1"
     aws_key_file: "{{ ansible_env.AWS_KEY_FILE }}"
+    aws_access_key_id: "{{ ansible_env.AWS_ACCESS_KEY_ID }}"
+    aws_secret_access_key: "{{ ansible_env.AWS_SECRET_ACCESS_KEY }}"
   vars_files:
   - "group_vars/ubuntu"
   - "group_vars/aws"
