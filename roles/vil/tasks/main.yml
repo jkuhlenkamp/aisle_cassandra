@@ -25,7 +25,7 @@
   debug: msg="{{ ec2 }}"
 
 - name: Add new instance to host group cluster
-  add_host: name={{ item.1.public_ip }} groups="{{ clustername }}" nodenumber="{{ item.0 }}"
+  add_host: name="{{ item.1.public_ip }}" groups="{{ clustername }}"
   with_indexed_items: ec2.results[0].instances
 
 - name: Provision AWS EBS volumes
