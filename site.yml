@@ -5,6 +5,7 @@
   hosts: localhost
   gather_facts: True
   vars:
+    clustergroup: "cassandra_cluster"
     aws_key_file: "{{ ansible_env.AWS_KEY_FILE }}"
   vars_files:
   - roles/vil/vars/cassandra.yml
@@ -15,6 +16,7 @@
   hosts: localhost
   gather_facts: True
   vars:
+    clustergroup: "ycsb_cluster"
     aws_key_file: "{{ ansible_env.AWS_KEY_FILE }}"
   vars_files:
   - roles/vil/vars/ycsb.yml

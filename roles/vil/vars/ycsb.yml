@@ -10,6 +10,8 @@ aws_key_file_name: "{{ aws_key_file | basename }}"
 
 aws_key_file_basename: "{{ aws_key_file_name | replace('.pem','') }}"
 
+clustername: "ycsb_cluster"
+
 # Id of the AWS access key
 # aws_access_key_id: "{{ AWS_ACCESS_KEY_ID }}"
 
