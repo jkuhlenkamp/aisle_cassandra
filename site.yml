@@ -25,14 +25,14 @@
   roles:
   - role: vil
 
-# - name: Wait for SSH
-#   hosts: localhost
-#   tasks:
-#   - wait_for: delay=120
+- name: Wait for SSH
+  hosts: localhost
+  tasks:
+  - wait_for: timeout=60
 
 - name: Setting up volumes in testbed
   hosts: tag_cassandra_true
-  user: ubuntu                          # [2Do: Read from OS config file]
+  user: ubuntu
   gather_facts: true
   vars_files: 
   - group_vars/ubuntu
@@ -61,9 +61,7 @@
     aws_region: "eu-west-1"
     aws_key_file: "{{ ansible_env.AWS_KEY_FILE }}"
   vars_files:
-  # Importing OS related variables, e.g., "group_vars/ubuntu".
-  - "group_vars/{{ ansible_distribution }}"
-  # Importing cloud provider related variables, e.g., "group_vars/aws".
+  - "group_vars/ubuntu"
   - "group_vars/aws"
   roles:
   - role: aws
@@ -76,45 +74,17 @@
   sudo: true
   gather_facts: yes
   vars_files:
-  # Importing OS related variables, e.g., "group_vars/ubuntu".
-  - "group_vars/{{ ansible_distribution }}"
-  # Importing cloud provider related variables, e.g., "group_vars/aws".
+  - "group_vars/ubuntu"
   - "group_vars/aws"
   roles:
   - role: cassandra
-
-# - hosts: tag_kairos_true
-#   remote_user: ubuntu
-#   sudo: true
-#   gather_facts: yes
-#   vars_files:
-#   # Importing OS related variables, e.g., "group_vars/ubuntu".
-#   - "group_vars/{{ ansible_distribution }}"
-#   # Importing cloud provider related variables, e.g., "group_vars/aws".
-#   - "group_vars/aws"
-#   roles:
-#   - role: kairos
-
-# - hosts: tag_newts_true
-#   remote_user: ubuntu
-#   sudo: true
-#   gather_facts: yes
-#   vars_files:
-#   # Importing OS related variables, e.g., "group_vars/ubuntu".
-#   - "group_vars/{{ ansible_distribution }}"
-#   # Importing cloud provider related variables, e.g., "group_vars/aws".
-#   - "group_vars/aws"
-#   roles:
-#   - role: newts
 
 - hosts: ycsb_cluster
   remote_user: ubuntu
   sudo: true
   gather_facts: yes
   vars_files:
-  # Importing OS related variables, e.g., "group_vars/ubuntu".
-  - "group_vars/{{ ansible_distribution }}"
-  # Importing cloud provider related variables, e.g., "group_vars/aws".
+  - "group_vars/ubuntu"
   - "group_vars/aws"
   roles:
   - role: ycsb
