@@ -5,6 +5,7 @@
   hosts: localhost
   gather_facts: True
   vars:
+    aws_instance_number: "1"
     clustergroup: "cassandra_cluster"
     aws_key_file: "{{ ansible_env.AWS_KEY_FILE }}"
   vars_files:
@@ -16,19 +17,18 @@
   hosts: localhost
   gather_facts: True
   vars:
+    aws_instance_number: "1"
     clustergroup: "ycsb_cluster"
     aws_key_file: "{{ ansible_env.AWS_KEY_FILE }}"
   vars_files:
   - roles/vil/vars/ycsb.yml
   roles:
   - role: vil
-  # tasks:
-  # - name: Print local variables
-  #   debug: msg="{{ ec2 }}"
-  # - name: Add new instances to corresponding groups
-  #   add_host: hostname={{ item.public_ip }} groupname=tag_cassandra_true
-  #   with_items: ec2.tagged_instances
 
+# - name: Wait for SSH
+#   hosts: localhost
+#   tasks:
+#   - wait_for: delay=120
 
 - name: Setting up volumes in testbed
   hosts: tag_cassandra_true
@@ -53,7 +53,7 @@
 
 
 # FIXME: Wait for SSH to come up
-- hosts: tag_cassandra_true:tag_kairos_true:tag_newts_true:tag_ycsb_true
+- hosts: cassandra_cluster:ycsb_cluster
   remote_user: ubuntu
   sudo: true
   gather_facts: yes
@@ -71,7 +71,7 @@
   - role: java
   - role: dstat
 
-- hosts: tag_cassandra_true
+- hosts: cassandra_cluster
   remote_user: ubuntu
   sudo: true
   gather_facts: yes
@@ -107,7 +107,7 @@
 #   roles:
 #   - role: newts
 
-- hosts: tag_ycsb_true
+- hosts: ycsb_cluster
   remote_user: ubuntu
   sudo: true
   gather_facts: yes
