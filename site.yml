@@ -35,7 +35,7 @@
   user: ubuntu                          # [2Do: Read from OS config file]
   gather_facts: true
   vars_files: 
-  - group_vars/Ubuntu
+  - group_vars/ubuntu
   - roles/vil/vars/cassandra.yml
   tasks:
     - set_fact:
