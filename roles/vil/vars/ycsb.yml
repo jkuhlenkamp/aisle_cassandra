@@ -27,10 +27,10 @@ aws_instance_number: 1
 aws_region: "eu-west-1"
 
 # security group (examples by region: [eu-west-1: g-f314ea96], [eu-central-1:sg-03a2646a])
-aws_group_id: "sg-f314ea96"
+aws_group_id: "sg-30115154"
 
 # vpn subnet (examples by region: [eu-west-1:subnet-503e2124], [eu-central-1:subnet-fa06e893])
-aws_vpc_subnet_id: "subnet-503e2124"
+aws_vpc_subnet_id: "subnet-83f2aae8"
 
 # instance type (examples: [t2.micro, t2.small, m3.medium])
 aws_instance_type: "t2.micro"
