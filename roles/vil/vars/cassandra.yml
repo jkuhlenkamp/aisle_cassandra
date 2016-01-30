@@ -23,7 +23,7 @@ clustername: "cassandra_cluster"
 # EC2: Instances
 
 # number of EC2 instances to provision (domain: [0..N])
-aws_instance_number: 1
+aws_instance_number: 2
 
 # region (examples: [eu-central-1, eu-west-1]
 aws_region: "eu-west-1"
@@ -35,7 +35,7 @@ aws_group_id: "sg-30115154"
 aws_vpc_subnet_id: "subnet-83f2aae8"
 
 # instance type (examples: [t2.micro, t2.small, m3.medium])
-aws_instance_type: "t2.micro"
+aws_instance_type: "m3.medium"
 
 # ami id (examples by region: [eu-west-1:ami-234ecc54], [eu-central-1:ami-9a380b87])
 aws_image_id: "ami-234ecc54"
